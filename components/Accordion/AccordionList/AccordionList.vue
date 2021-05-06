@@ -1,0 +1,55 @@
+<template>
+  <div class="accordion" :class="{ 'high-level': highLevel }">
+    <div
+      v-for="(item, index) of list"
+      :key="item.title"
+      class="group"
+      :class="{ active: item.dropped }"
+    >
+      <div
+        class="title"
+        :class="{ drop: !!item.children }"
+        @click="menuItemHandler(index, list)"
+      >
+        {{ item.title }}
+      </div>
+      <div v-if="!!item.children" class="list">
+        <accordion-list :menu-list="item.children" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import menuDrop from '@/mixins/menuDrop'
+
+export default {
+  name: 'AccordionList',
+  mixins: [menuDrop],
+  props: {
+    menuList: {
+      type: Array,
+      required: true,
+    },
+    highLevel: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data: () => ({
+    list: [],
+  }),
+  watch: {
+    menuList(newList) {
+      this.list = newList
+    },
+  },
+  mounted() {
+    this.list = this.menuList
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+@import 'AccordionList';
+</style>

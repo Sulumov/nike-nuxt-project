@@ -1,0 +1,23 @@
+.cart-icon {
+  width: 30px;
+  height: 21px;
+  background-image: url("~assets/icons/cart.svg");
+  background-size: 30px;
+  background-repeat: no-repeat;
+  margin-top: 4px;
+  position: relative;
+}
+
+.number {
+  position: absolute;
+  height: 20px;
+  padding: 0 8px;
+  background: #FE030A;
+  border-radius: 19px;
+  top: -11px;
+  right: -9px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 130%;
+  color: #fff;
+}

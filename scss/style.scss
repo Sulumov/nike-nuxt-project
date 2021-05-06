@@ -1,0 +1,26 @@
+@import "components/reset";
+@import "components/fonts";
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  font-family: 'Aeroport', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 150%;
+}
+
+.container {
+  padding: 0 40px;
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+}
