@@ -1,4 +1,5 @@
 @import "scss/components/hamburgers/hamburgers";
+
 .mobile-menu {
   display: none;
   @media (max-width: 1024px) {
@@ -21,12 +22,27 @@
   padding: 20px;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(10px);
+  transform: translateY(-10px);
   transition: .1s ease-in;
+  overflow-y: auto;
 
   &.active {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
+  }
+}
+
+.static-menu-list {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0 20px;
+  border-top: 1px solid #EAEAEA;
+  margin-top: 32px;
+
+  > a {
+    font-size: 20px;
+    line-height: 130%;
+    padding: 12px 0;
   }
 }

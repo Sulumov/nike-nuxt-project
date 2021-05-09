@@ -1,27 +1,43 @@
 <template>
   <div class="mobile-menu">
     <button
-      class="hamburger hamburger--collapse"
+      class="hamburger hamburger--slider"
       :class="{ 'is-active': mobileMenuVisibleStatus }"
       type="button"
-      @click="burgerHandler"
+      @click="toggleMobileMenu"
     >
-      <span class="hamburger-box">
-        <span class="hamburger-inner"></span>
-      </span>
+      <span class="hamburger-box"> <span class="hamburger-inner"></span></span>
     </button>
     <div class="menu-window" :class="{ active: mobileMenuVisibleStatus }">
       <accordion-list :high-level="true" :menu-list="menuList" />
+      <div class="static-menu-list">
+        <nuxt-link to="/">Доставка</nuxt-link>
+        <nuxt-link to="/">Оплата</nuxt-link>
+        <nuxt-link to="/">Возврат</nuxt-link>
+        <nuxt-link to="/">О нас</nuxt-link>
+        <nuxt-link to="/">Контакты</nuxt-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import menuDrop from '@/mixins/menuDrop'
+
 export default {
   name: 'MobileMenu',
   mixins: [menuDrop],
+  computed: {
+    ...mapState({
+      mobileMenuVisibleStatus: (state) => state.mobileMenuVisibleStatus,
+    }),
+  },
+  methods: {
+    ...mapActions({
+      toggleMobileMenu: 'toggleMobileMenu',
+    }),
+  },
   data: () => ({
     menuList: [
       {
@@ -182,22 +198,9 @@ export default {
       },
     ],
   }),
-  computed: {
-    ...mapState({
-      mobileMenuVisibleStatus: (state) => state.mobileMenuVisibleStatus,
-    }),
-  },
-  methods: {
-    burgerHandler() {
-      return this.setVisibleStatus(!this.mobileMenuVisibleStatus)
-    },
-    ...mapMutations({
-      setVisibleStatus: 'SET_MOBILE_MENU_VISIBLE_STATUS',
-    }),
-  },
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import 'MobileMenu';
 </style>

@@ -4,13 +4,13 @@
       <li
         v-for="(item, index) in menuList"
         :key="item.title"
-        class="link"
+        class="menu__link"
         :class="{ 'has-children': !!item.children, active: item.dropped }"
       >
         <a href="#" @click.prevent="menuItemHandler(index, menuList)">
           {{ item.title }}
         </a>
-        <ul v-if="!!item.children" class="drop">
+        <ul v-if="!!item.children" class="menu__drop">
           <li v-for="subItem in item.children" :key="subItem.title">
             <nuxt-link :to="subItem.to">{{ subItem.title }}</nuxt-link>
           </li>
@@ -94,6 +94,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import 'TopMenu';
 </style>

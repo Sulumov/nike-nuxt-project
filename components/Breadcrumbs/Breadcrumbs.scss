@@ -1,0 +1,21 @@
+.breadcrumbs {
+  display: flex;
+  * {
+    color: #999999;
+    font-size: 12px;
+    line-height: 130%;
+    cursor: pointer;
+    transition: .1s linear;
+    &:after {
+      content: "/";
+      margin: 0 3px;
+    }
+
+    &:last-child:after {
+      content: none;
+    }
+    &:hover {
+      color: #000;
+    }
+  }
+}

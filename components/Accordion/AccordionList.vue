@@ -3,17 +3,17 @@
     <div
       v-for="(item, index) of list"
       :key="item.title"
-      class="group"
+      class="accordion__group"
       :class="{ active: item.dropped }"
     >
       <div
-        class="title"
+        class="accordion__title"
         :class="{ drop: !!item.children }"
         @click="menuItemHandler(index, list)"
       >
         {{ item.title }}
       </div>
-      <div v-if="!!item.children" class="list">
+      <div v-if="!!item.children" class="accordion__list">
         <accordion-list :menu-list="item.children" />
       </div>
     </div>
@@ -50,6 +50,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import 'AccordionList';
+<style lang="scss">
+@import 'components/Accordion/AccordionList';
 </style>

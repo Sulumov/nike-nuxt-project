@@ -1,0 +1,55 @@
+.accordion {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    font-size: 20px;
+    line-height: 130%;
+    user-select: none;
+    cursor: pointer;
+
+    &.drop:after {
+      content: "";
+      width: 12px;
+      height: 7px;
+      background-image: url("~assets/icons/down.svg");
+      background-repeat: no-repeat;
+      background-size: 12px;
+      transition: .1s ease-in;
+    }
+
+
+  }
+
+  &__list {
+    padding-left: 20px;
+    height: 0;
+    overflow: hidden;
+  }
+
+  &__group.active > &__list {
+    height: auto;
+  }
+
+  &__group.active > &__title.drop:after {
+    transform: rotate(180deg);
+  }
+
+
+  &.high-level > &__group > &__title {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 130%;
+  }
+
+}
+
+
+
+
+
+

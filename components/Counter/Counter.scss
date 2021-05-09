@@ -1,0 +1,55 @@
+.counter {
+  background: #F4F4F4;
+  border-radius: 8px;
+  width: 160px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 18px;
+  line-height: 130%;
+  text-align: center;
+  margin-right: 16px;
+
+
+
+  &__btn {
+    width: 60px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 12px;
+    border: none;
+    background-color: transparent;
+    transition: .1s ease-in;
+    cursor: pointer;
+
+    &:hover {
+      opacity: .6;
+    }
+
+    &--plus {
+      right: 0;
+      background-image: url("~assets/icons/plus.svg");
+    }
+
+    &--minus {
+      left: 0;
+      background-image: url("~assets/icons/minus.svg");
+    }
+  }
+
+  &--small {
+    width: 107px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 130%;
+  }
+
+  &--small &__btn {
+    width: 40px;
+  }
+}

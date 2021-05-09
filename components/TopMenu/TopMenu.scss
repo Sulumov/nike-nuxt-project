@@ -18,27 +18,26 @@
     padding: 8px 24px;
   }
 
-  .link {
-    &.has-children {
+  &__link {
+    &.has-children > a {
       background-image: url("~assets/icons/down.svg");
       background-size: 12px;
       background-repeat: no-repeat;
       background-position: calc(100% - 3px) 20px;
     }
-    &.active {
-      > a {
-        color: #777777;
-      }
-      background-image: url("~assets/icons/down-active.svg");
+    &.active > a {
+      opacity: .36;
     }
-    &.active .drop {
+
+  }
+
+  &__link.active &__drop {
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0);
-    }
   }
 
-  .drop {
+  &__drop {
     position: absolute;
     opacity: 0;
     pointer-events: none;
@@ -47,7 +46,8 @@
     background: #FFFFFF;
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.09);
     border-radius: 8px;
-    padding: 8px 0;
+    padding: 8px 0!important;
+    z-index: 200;
 
     a:hover {
       color: #777777;

@@ -1,0 +1,145 @@
+.cart-item {
+  display: flex;
+  position: relative;
+  padding-bottom: 49px;
+  margin-bottom: 49px;
+  border-bottom: 1px solid #EAEAEA;
+
+  @media (max-width: 666px) {
+    flex-wrap: wrap;
+  }
+
+  &:only-child {
+    border-bottom: none;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__img {
+    min-width: max-content;
+
+    img {
+      width: 79px;
+      height: 114px;
+      object-fit: cover;
+
+      @media (max-width: 666px) {
+        width: 53px;
+        height: 75px;
+      }
+    }
+  }
+
+  &__description {
+    padding-left: 23px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (max-width: 666px) {
+      display: contents;
+    }
+  }
+
+  &__title {
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 130%;
+    margin-bottom: 8px;
+
+  }
+
+  &__remove {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: -10px;
+    right: -10px;
+    background-image: url("~assets/icons/сlose.svg");
+    background-size: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .33;
+    transition: .1s linear;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__size {
+    font-size: 16px;
+    line-height: 130%;
+    color: #777;
+  }
+
+  &__bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+  }
+
+  @media (max-width: 666px) {
+    &__bottom-section {
+      padding-top: 23px;
+      width: 100%;
+      position: relative;
+    }
+
+    &__discount {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  &__price-section {
+    display: flex;
+    align-items: center;
+
+    > * {
+      margin-right: 12px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__top-section {
+    @media (max-width: 666px) {
+      width: calc(100% - 53px);
+      padding-left: 15px;
+    }
+  }
+
+  &__old-price, &__price {
+    font-size: 18px;
+    line-height: 130%;
+    color: #999999;
+
+    &::after {
+      content: "₽";
+    }
+  }
+
+  &__price {
+    color: #000;
+    font-weight: bold;
+  }
+
+  &__discount {
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 130%;
+    color: #fff;
+    background: #FE030A;
+    border-radius: 24px;
+    padding: 4px 8px;
+  }
+}
