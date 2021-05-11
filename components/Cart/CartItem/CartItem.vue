@@ -8,20 +8,22 @@
         <a
           href="#"
           class="cart-item__remove"
-          @click.prevent="removeItemFromCart"
+          @click.prevent="removeFromCart(index)"
         />
-        <div class="cart-item__title">
-          {{ title }}
-        </div>
+        <div class="cart-item__title">{{ title }} {{ id }}</div>
         <div class="cart-item__size">{{ size }}</div>
       </div>
       <div class="cart-item__bottom-section">
-        <counter :small="true" />
+        <counter
+          :small="true"
+          :value="number"
+          @change="changeItemNumber({ index, number: $event })"
+        />
         <div class="cart-item__price-section">
           <div v-if="discount" class="cart-item__discount">
             -{{ discount }}%
           </div>
-          <div class="cart-item__old-price">
+          <div v-if="oldPrice" class="cart-item__old-price">
             {{ oldPrice }}
           </div>
           <div class="cart-item__price">
@@ -34,6 +36,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   name: 'CartItem',
   props: {
@@ -46,14 +49,14 @@ export default {
       required: true,
     },
     discount: {
-      type: String,
+      type: Number,
     },
     price: {
-      type: String,
+      type: Number,
       required: true,
     },
     oldPrice: {
-      type: String,
+      type: Number,
     },
     size: {
       type: String,
@@ -63,9 +66,20 @@ export default {
       type: String,
       required: true,
     },
+    number: {
+      type: Number,
+      required: true,
+    },
+    index: {
+      type: Number,
+      required: true,
+    },
   },
   methods: {
-    removeItemFromCart(id) {},
+    ...mapMutations({
+      changeItemNumber: 'cart/CHANGE_ITEM_NUMBER',
+      removeFromCart: 'cart/REMOVE_FROM_CART',
+    }),
   },
 }
 </script>

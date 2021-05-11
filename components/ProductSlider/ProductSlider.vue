@@ -14,7 +14,9 @@
         </div>
       </div>
       <div class="product-slider__main-image-container">
-        <div class="product-slider__discount">-30%</div>
+        <div v-if="discount > 0" class="product-slider__discount">
+          -{{ discount }}%
+        </div>
         <carousel
           ref="slider"
           :per-page="1"
@@ -51,6 +53,10 @@ export default {
     images: {
       type: Array,
       required: true,
+    },
+    discount: {
+      type: Number,
+      default: 0,
     },
   },
   data: () => ({

@@ -1,0 +1,15 @@
+.relevant-items-block {
+  margin-top: 74px;
+  border-top: 1px solid #EAEAEA;
+  padding-top: 80px;
+
+  &__title {
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 120%;
+  }
+
+  &__list {
+    display: flex;
+  }
+}

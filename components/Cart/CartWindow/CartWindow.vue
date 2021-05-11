@@ -11,99 +11,52 @@
         class="cart-window__close"
         @click.prevent="toggleCartWindow"
       />
-      <div class="cart-window__list">
-        <cart-item
-          id="123"
-          size="L"
-          discount="30"
-          price="2900"
-          old-price="3500"
-          title="Свитшот Nike"
-          image="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/c2579eeb-3048-4e65-a42c-c887a771354c/nikelab-fleece-rundhalsshirt-9czD4J.png"
-        />
-        <cart-item
-          id="123"
-          size="L"
-          discount="30"
-          price="2900"
-          old-price="3500"
-          title="Свитшот Nike"
-          image="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/c2579eeb-3048-4e65-a42c-c887a771354c/nikelab-fleece-rundhalsshirt-9czD4J.png"
-        />
-        <cart-item
-          id="123"
-          size="L"
-          discount="30"
-          price="2900"
-          old-price="3500"
-          title="Свитшот Nike"
-          image="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/c2579eeb-3048-4e65-a42c-c887a771354c/nikelab-fleece-rundhalsshirt-9czD4J.png"
-        />
-        <cart-item
-          id="123"
-          size="L"
-          discount="30"
-          price="2900"
-          old-price="3500"
-          title="Свитшот Nike"
-          image="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/c2579eeb-3048-4e65-a42c-c887a771354c/nikelab-fleece-rundhalsshirt-9czD4J.png"
-        />
-        <cart-item
-          id="123"
-          size="L"
-          discount="30"
-          price="2900"
-          old-price="3500"
-          title="Свитшот Nike"
-          image="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/c2579eeb-3048-4e65-a42c-c887a771354c/nikelab-fleece-rundhalsshirt-9czD4J.png"
-        />
-        <cart-item
-          id="123"
-          size="L"
-          discount="30"
-          price="2900"
-          old-price="3500"
-          title="Свитшот Nike"
-          image="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/c2579eeb-3048-4e65-a42c-c887a771354c/nikelab-fleece-rundhalsshirt-9czD4J.png"
-        />
-        <cart-item
-          id="123"
-          size="L"
-          discount="30"
-          price="2900"
-          old-price="3500"
-          title="Свитшот Nike"
-          image="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/c2579eeb-3048-4e65-a42c-c887a771354c/nikelab-fleece-rundhalsshirt-9czD4J.png"
-        />
-        <cart-item
-          id="123"
-          size="L"
-          discount="30"
-          price="2900"
-          old-price="3500"
-          title="Свитшот Nike"
-          image="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/c2579eeb-3048-4e65-a42c-c887a771354c/nikelab-fleece-rundhalsshirt-9czD4J.png"
-        />
+      <div v-if="!cartItems.length" class="cart-window__empty">
+        В корзине пусто
       </div>
-      <div class="cart-window__footer">
-        <div class="cart-window__total-amount">
-          Предварительный итог:
-          <div class="cart-window__num">2900</div>
+      <template v-else>
+        <div class="cart-window__list">
+          <cart-item
+            v-for="(item, index) in cartItems"
+            :id="item.id"
+            :key="item.size.value + item.color.value"
+            :size="item.size.name"
+            :discount="item.discount"
+            :price="item.price"
+            :old-price="item.oldPrice"
+            :title="item.name"
+            :image="item.image"
+            :number="item.number"
+            :index="index"
+          />
         </div>
-        <button class="cart-window__buy">Оформить заказ</button>
-      </div>
+        <div class="cart-window__footer">
+          <div class="cart-window__total-amount">
+            Предварительный итог:
+            <div class="cart-window__num">{{ totalAmountFormat }}</div>
+          </div>
+          <button class="cart-window__buy">Оформить заказ</button>
+        </div>
+      </template>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
   name: 'CartWindow',
   computed: {
     ...mapState({
       visibleStatus: (state) => state.cart.cartWindowVisibleStatus,
+      cartItems: (state) => state.cart.cart,
     }),
+    ...mapGetters({
+      totalAmount: 'cart/getTotalAmount',
+    }),
+    totalAmountFormat() {
+      return this.totalAmount.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ')
+    },
   },
   methods: {
     ...mapActions({

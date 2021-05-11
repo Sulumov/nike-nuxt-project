@@ -87,8 +87,12 @@
         width: 100%;
         height: 509px;
         object-fit: contain;
-
       }
+    }
+    @media (max-width: 460px) {
+       img {
+         object-fit: cover;
+       }
     }
   }
 

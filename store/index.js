@@ -13,6 +13,12 @@ const mutations = {
 }
 
 const actions = {
+  async nuxtServerInit({ commit }, { req }) {
+    const { data } = await this.$axios.get(
+      'https://adam.yorc.org/testmock/products.json'
+    )
+    commit('products/SET_PRODUCTS_LIST', data, { root: true })
+  },
   toggleMobileMenu({ commit, state }) {
     const status = !state.mobileMenuVisibleStatus
     commit('SET_MOBILE_MENU_VISIBLE_STATUS', status)

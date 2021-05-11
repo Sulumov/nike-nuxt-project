@@ -18,7 +18,7 @@ export default {
   props: {
     value: {
       type: Number,
-      default: 1,
+      default: 99,
     },
     small: {
       type: Boolean,
@@ -30,8 +30,11 @@ export default {
   }),
   watch: {
     counterNum(currentValue, lastValue) {
-      if (currentValue === 0 || currentValue > 99) this.counterNum = lastValue
+      if (currentValue === 0 || currentValue > 199) this.counterNum = lastValue
       this.$emit('change', this.counterNum)
+    },
+    value(val) {
+      this.counterNum = val
     },
   },
   mounted() {

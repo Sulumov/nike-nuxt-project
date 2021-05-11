@@ -5,7 +5,9 @@
 <script>
 export default {
   mounted() {
-    this.$router.push('/product/svitshot-nike')
+    this.$router.push(
+      '/product/худи-с-молнией-во-всю-длину-sportswear-tech-fleece-Rhmk1c'
+    )
   },
 }
 </script>

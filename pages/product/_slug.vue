@@ -3,114 +3,106 @@
     <div class="product__back" @click="$router.back()" />
     <div class="container">
       <div class="product__details">
-        <product-slider :images="images" />
+        <product-slider :images="product.images" :discount="product.discount" />
         <div class="product-info">
           <client-only>
             <breadcrumbs />
           </client-only>
-          <div class="product-info__title">Свитшот Nike</div>
+          <div class="product-info__title">{{ product.name }}</div>
           <div class="product-info__prices">
-            <div class="product-info__old-price">3500</div>
-            <div class="product-info__current-price">2900</div>
+            <div v-if="product.old_price" class="product-info__old-price">
+              {{ product.old_price }}
+            </div>
+            <div class="product-info__current-price">
+              {{ product.current_price }}
+            </div>
           </div>
           <div class="product-info__options">
-            <div v-if="!available" class="product-info__empty">
+            <div v-if="!product.available" class="product-info__empty">
               Товар закончился
             </div>
             <template v-else>
               <property-selector
                 title="Размер"
-                :properties="[
-                  { name: 'xs', value: 'xs' },
-                  { name: 's', value: 's' },
-                  { name: 'm', value: 'm' },
-                  { name: 'l', value: 'l' },
-                  { name: 'xl', value: 'xl' },
-                  { name: 'xxl', value: 'xxl' },
-                ]"
+                :properties="product.properties.size"
                 @select="selectHandler($event, 'selectedSize')"
               />
               <property-selector
                 :big="true"
                 title="Цвета"
-                :properties="[
-                  {
-                    name: 'Синий',
-                    value: 'blue',
-                  },
-                  {
-                    name: 'Черный',
-                    value: 'black',
-                  },
-                  {
-                    name: 'Красный',
-                    value: 'red',
-                  },
-                  {
-                    name: 'Желтый',
-                    value: 'yellow',
-                  },
-                ]"
+                :properties="product.properties.colors"
                 @select="selectHandler($event, 'selectedColor')"
               />
-              <add-to-cart />
+              <add-to-cart
+                :id="product.id"
+                :name="product.name"
+                :price="product.current_price"
+                :size="selectedSize"
+                :color="selectedColor"
+                :discount="product.discount"
+                :old-price="product.old_price"
+                :image="product.images[0]"
+              />
             </template>
           </div>
           <div class="product-info__details">
             <div class="product-info__info-block">
-              <strong>Свитшот оверсайз со спущенной линией плеча.</strong>
+              <strong>{{ product.description }}</strong>
             </div>
-            <div class="product-info__info-block">
-              <!--TODO render item property list to string-->
-              <strong>Состав:</strong> 80% хлопок, 20% полиэстер.
+            <div v-if="parseCompoundToString" class="product-info__info-block">
+              <strong>Состав: </strong> {{ parseCompoundToString }}.
             </div>
             <div class="product-info__info-block">
               <strong class="product-info__strong-block">
                 Рекомендация по уходу:
               </strong>
-              Только ручная стирка при температуре не выше 30 градусов,
-              нейтральными моющими средствами; не тереть; не отжимать;
-              отбеливание запрещено; не стирать моющими средствами содержащие
-              отбеливатель; химчистка запрещена; гладить при низкой температуре
-              до 100 градусов; сушить в тени на горизонтальной поверхности.
+              {{ product.recommendations }}
             </div>
           </div>
         </div>
       </div>
+      <relevant-items-block />
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Slug',
+  fetch() {
+    this.product = this.getProductBySlug(this.$route.params.slug)
+  },
   data: () => ({
+    product: {},
     available: true,
     selectedSize: {},
     selectedColor: {},
-    name: 'Свитшот Nike',
-    // TODO remove this property and fetch image array inside the slider from store
-    images: [
-      'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/c2579eeb-3048-4e65-a42c-c887a771354c/nikelab-fleece-rundhalsshirt-9czD4J.png',
-      'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/62508edf-5476-447f-a65c-65c6b8871cb0/nikelab-fleece-rundhalsshirt-9czD4J.png',
-      'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/88da3b11-cf49-4486-b9ae-e801418d3f16/nikelab-fleece-rundhalsshirt-9czD4J.png',
-      'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/3a5e4047-788b-47cf-9c5e-fed82be72eb1/nikelab-fleece-rundhalsshirt-9czD4J.png',
-    ],
   }),
   methods: {
     selectHandler(data, prop) {
       this.$data[prop] = data
     },
   },
+  computed: {
+    ...mapGetters({
+      getProductBySlug: 'products/getProductBySlug',
+    }),
+    parseCompoundToString() {
+      return Object.keys(this.product).length !== 0
+        ? this.product.compound.join(', ')
+        : null
+    },
+  },
   head() {
     return {
-      title: 'Свитшот Nike',
+      title: this.product.name || 'Загрузка...',
       meta: [
         {
           hid: 'description',
           name: 'description',
           // TODO product description
-          content: 'My custom description',
+          content: this.product.description || '',
         },
       ],
     }

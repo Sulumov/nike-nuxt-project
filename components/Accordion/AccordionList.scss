@@ -12,6 +12,10 @@
     user-select: none;
     cursor: pointer;
 
+    &:only-child {
+      display: block;
+    }
+
     &.drop:after {
       content: "";
       width: 12px;

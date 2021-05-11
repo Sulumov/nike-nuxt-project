@@ -7,6 +7,8 @@
 
   @media (max-width: 666px) {
     flex-wrap: wrap;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
   }
 
   &:only-child {
@@ -122,6 +124,7 @@
     font-size: 18px;
     line-height: 130%;
     color: #999999;
+    text-decoration: line-through;
 
     &::after {
       content: "₽";
@@ -131,6 +134,8 @@
   &__price {
     color: #000;
     font-weight: bold;
+    text-decoration: none;
+
   }
 
   &__discount {
