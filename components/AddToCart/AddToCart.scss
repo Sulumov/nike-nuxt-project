@@ -17,7 +17,8 @@
     line-height: 130%;
     text-align: center;
     transition: .1s ease-in;
-    &:hover {
+
+    &:hover, &:disabled {
       background: #777777;
     }
 

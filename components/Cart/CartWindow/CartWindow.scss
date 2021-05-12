@@ -26,6 +26,7 @@
   top: 0;
   bottom: 0;
   width: 548px;
+  max-width: 82vw;
   background: #fff;
   padding: 40px 0 40px 40px;
   transform: translateX(100%);
@@ -34,12 +35,8 @@
   flex-direction: column;
   overflow: hidden;
 
-  @media (max-width: 666px) {
+  @media (max-width: 500px) {
     padding: 20px 0 20px 20px;
-  }
-
-  @media (max-width: 666px) {
-    width: 82vw;
   }
 
   &__empty {

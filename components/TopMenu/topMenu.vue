@@ -7,7 +7,14 @@
         class="menu__link"
         :class="{ 'has-children': !!item.children, active: item.dropped }"
       >
-        <a href="#" @click.prevent="menuItemHandler(index, menuList)">
+        <a
+          href="#"
+          class="menu__title"
+          @click.prevent="
+            menuItemHandler(index, menuList)
+            outsideClickHandler(index, $event)
+          "
+        >
           {{ item.title }}
         </a>
         <ul v-if="!!item.children" class="menu__drop">
@@ -91,6 +98,17 @@ export default {
       },
     ],
   }),
+  methods: {
+    outsideClickHandler(index, event) {
+      const clickEvent = (e) => {
+        if (e.target !== event.target) {
+          this.menuList[index].dropped = false
+          document.removeEventListener('click', clickEvent, false)
+        }
+      }
+      document.addEventListener('click', clickEvent, false)
+    },
+  },
 }
 </script>
 

@@ -1,7 +1,13 @@
 <template>
   <div class="add-to-cart">
     <counter @change="counterHandler" />
-    <button class="add-to-cart__button" @click="preparation">В корзину</button>
+    <button
+      class="add-to-cart__button"
+      :disabled="!size.value || !color.value"
+      @click="preparation"
+    >
+      В корзину
+    </button>
   </div>
 </template>
 
@@ -42,6 +48,10 @@ export default {
       type: String,
       required: true,
     },
+    slug: {
+      type: String,
+      required: true,
+    },
   },
   data: () => ({
     counterNum: 1,
@@ -54,19 +64,18 @@ export default {
       addToCart: 'cart/addToCart',
     }),
     async preparation() {
-      if (this.size.value && this.color.value) {
-        await this.addToCart({
-          id: this.id,
-          name: this.name,
-          number: this.counterNum,
-          price: this.price,
-          oldPrice: this.oldPrice,
-          discount: this.discount,
-          size: this.size,
-          color: this.color,
-          image: this.image,
-        })
-      }
+      await this.addToCart({
+        id: this.id,
+        name: this.name,
+        number: this.counterNum,
+        price: this.price,
+        oldPrice: this.oldPrice,
+        discount: this.discount,
+        size: this.size,
+        color: this.color,
+        image: this.image,
+        slug: this.slug,
+      })
     },
   },
 }

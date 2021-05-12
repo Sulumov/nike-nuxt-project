@@ -29,7 +29,7 @@
 
       @media (max-width: 666px) {
         width: 53px;
-        height: 75px;
+        height: 78px;
       }
     }
   }
@@ -51,6 +51,11 @@
     font-size: 20px;
     line-height: 130%;
     margin-bottom: 8px;
+
+    @media (max-width: 666px) {
+      font-size: 18px;
+      line-height: 130%;
+    }
 
   }
 

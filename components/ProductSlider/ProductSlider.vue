@@ -20,7 +20,7 @@
         <carousel
           ref="slider"
           :per-page="1"
-          :mouse-drag="false"
+          :mouse-drag="true"
           :pagination-enabled="false"
           :navigation-enabled="true"
           navigation-next-label="<div class='slider-arrow slider-arrow--right'></span>"
@@ -29,16 +29,7 @@
           @page-change="slideChangedEvent"
         >
           <slide v-for="image in images" :key="image">
-            <image-zoom
-              v-if="$device.isDesktop"
-              ref="imageZoom"
-              :zoom-amount="10"
-              :regular="image"
-              :click-zoom="true"
-              :show-message="false"
-              :show-message-touch="false"
-            />
-            <img v-else :src="image" />
+            <img :src="image" />
           </slide>
         </carousel>
       </div>

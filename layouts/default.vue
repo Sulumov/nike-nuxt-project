@@ -2,7 +2,10 @@
   <div>
     <Header />
     <Nuxt />
-    <cart-window />
+    <Footer />
+    <client-only>
+      <cart-window />
+    </client-only>
   </div>
 </template>
 <script>

@@ -1,14 +1,17 @@
 <template>
-  <div class="accordion" :class="{ 'high-level': highLevel }">
+  <div class="accordion" :class="{ 'accordion--high-level': highLevel }">
     <div
       v-for="(item, index) of list"
       :key="item.title"
       class="accordion__group"
-      :class="{ active: item.dropped }"
+      :class="{
+        active: item.dropped,
+        'accordion__group--show-all': item.showAll,
+      }"
     >
       <div
         class="accordion__title"
-        :class="{ drop: !!item.children }"
+        :class="{ 'accordion__title--drop': !!item.children }"
         @click="menuItemHandler(index, list)"
       >
         {{ item.title }}

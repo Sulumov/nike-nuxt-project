@@ -42,6 +42,7 @@
                 :discount="product.discount"
                 :old-price="product.old_price"
                 :image="product.images[0]"
+                :slug="product.slug"
               />
             </template>
           </div>
@@ -62,16 +63,18 @@
         </div>
       </div>
       <relevant-items-block />
+      <history />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'Slug',
   fetch() {
     this.product = this.getProductBySlug(this.$route.params.slug)
+    this.setCurrentProductId(this.product.id)
   },
   data: () => ({
     product: {},
@@ -79,11 +82,6 @@ export default {
     selectedSize: {},
     selectedColor: {},
   }),
-  methods: {
-    selectHandler(data, prop) {
-      this.$data[prop] = data
-    },
-  },
   computed: {
     ...mapGetters({
       getProductBySlug: 'products/getProductBySlug',
@@ -94,14 +92,21 @@ export default {
         : null
     },
   },
+  methods: {
+    selectHandler(data, prop) {
+      this.$data[prop] = data
+    },
+    ...mapMutations({
+      setCurrentProductId: 'products/SET_CURRENT_PRODUCT',
+    }),
+  },
   head() {
     return {
-      title: this.product.name || 'Загрузка...',
+      title: this.product.name,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          // TODO product description
           content: this.product.description || '',
         },
       ],
@@ -110,7 +115,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .product {
   padding-top: 48px;
   position: relative;
@@ -129,6 +134,7 @@ export default {
     background-repeat: no-repeat;
     background-size: 28px;
     position: absolute;
+    cursor: pointer;
     @media (max-width: 1024px) {
       left: 20px;
     }
@@ -168,7 +174,7 @@ export default {
 
     *:after {
       content: '₽';
-      margin-left: 6px;
+      margin-left: 3px;
     }
   }
 

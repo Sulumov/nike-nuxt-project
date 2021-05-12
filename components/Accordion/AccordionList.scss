@@ -16,7 +16,7 @@
       display: block;
     }
 
-    &.drop:after {
+    &--drop:after {
       content: "";
       width: 12px;
       height: 7px;
@@ -26,7 +26,15 @@
       transition: .1s ease-in;
     }
 
+    &--show-all {
+      text-decoration-line: underline;
+      color: #828282;
 
+      &:after {
+        content: none;
+      }
+
+    }
   }
 
   &__list {
@@ -39,12 +47,29 @@
     height: auto;
   }
 
-  &__group.active > &__title.drop:after {
+  &__group--show-all > &__title {
+    text-decoration-line: underline;
+    color: #828282;
+
+    &:after {
+      content: none
+    }
+  }
+
+  &__group--show-all.active > &__title {
+    display: none;
+  }
+
+  &__group--show-all > &__list {
+    padding-left: 0;
+  }
+
+  &__group.active > &__title--drop:after {
     transform: rotate(180deg);
   }
 
 
-  &.high-level > &__group > &__title {
+  &--high-level > &__group > &__title {
     font-weight: bold;
     font-size: 22px;
     line-height: 130%;

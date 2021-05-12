@@ -18,7 +18,7 @@ export default {
   props: {
     value: {
       type: Number,
-      default: 99,
+      default: 1,
     },
     small: {
       type: Boolean,

@@ -1,7 +1,10 @@
 <template>
   <div class="property-selector">
     <div class="property-selector__title">{{ title }}:</div>
-    <div class="property-selector__property-list" :class="{ bigBlock: big }">
+    <div
+      class="property-selector__property-list"
+      :class="{ 'property-selector__property-list--big': big }"
+    >
       <div
         v-for="(property, index) in properties"
         :key="property.value"

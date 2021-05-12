@@ -1,6 +1,8 @@
 .product-slider {
   display: flex;
-
+  @media (min-width: 768px) {
+    min-width: 560px;
+  }
   @media (max-width: 768px) {
     transform: translateX(20px);
   }
@@ -90,9 +92,9 @@
       }
     }
     @media (max-width: 460px) {
-       img {
-         object-fit: cover;
-       }
+      img {
+        object-fit: cover;
+      }
     }
   }
 
@@ -132,6 +134,11 @@
   height: 19px;
   background-repeat: no-repeat;
   background-size: contain;
+  transition: .1s linear;
+
+  &:hover {
+    opacity: .3;
+  }
 
   &--left {
     background-image: url('~assets/icons/arrow-left.svg');

@@ -19,7 +19,7 @@
           <cart-item
             v-for="(item, index) in cartItems"
             :id="item.id"
-            :key="item.size.value + item.color.value"
+            :key="item.id + item.size.value + item.color.value"
             :size="item.size.name"
             :discount="item.discount"
             :price="item.price"
@@ -28,6 +28,7 @@
             :image="item.image"
             :number="item.number"
             :index="index"
+            :slug="item.slug"
           />
         </div>
         <div class="cart-window__footer">
@@ -56,6 +57,11 @@ export default {
     }),
     totalAmountFormat() {
       return this.totalAmount.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ')
+    },
+  },
+  watch: {
+    $route() {
+      if (this.visibleStatus) this.toggleCartWindow(false)
     },
   },
   methods: {

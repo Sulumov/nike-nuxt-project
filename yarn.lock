@@ -5093,11 +5093,6 @@ launch-editor@^2.2.1:
     chalk "^2.3.0"
     shell-quote "^1.6.1"
 
-lazysizes@^5.2.2:
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/lazysizes/-/lazysizes-5.3.2.tgz#27f974c26f5fcc33e7db765c0f4930488c8a2984"
-  integrity sha512-22UzWP+Vedi/sMeOr8O7FWimRVtiNJV2HCa+V8+peZOw6QbswN9k58VUhd7i6iK5bw5QkYrF01LJbeJe0PV8jg==
-
 levn@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/levn/-/levn-0.4.1.tgz"
@@ -8578,14 +8573,6 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz"
   integrity sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
-
-vue-image-zoomer@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/vue-image-zoomer/-/vue-image-zoomer-1.2.1.tgz#6f362bffb01268a92dbdf9b7ca9f7a75eb5d2d2e"
-  integrity sha512-qdPqa9ZYnhTUtPbuCTaxBDJNZpfZHyt1KHV+ltE/iQ8hE9j2aFGqWTMWumMk84SYBSmKkzHcFHfLth3mruENKA==
-  dependencies:
-    lazysizes "^5.2.2"
-    vue "^2.6.12"
 
 vue-loader@^15.9.6:
   version "15.9.6"

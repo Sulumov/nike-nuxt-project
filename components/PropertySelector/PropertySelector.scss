@@ -1,5 +1,5 @@
 .property-selector {
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 
   &__title {
     font-weight: bold;
@@ -9,13 +9,16 @@
 
   &__property-list {
     display: flex;
-    padding: 16px 0 0;
+    padding: 11px 0 0;
 
-
+    &--big {
+      flex-wrap: wrap;
+    }
   }
 
-  &__property-list.bigBlock &__property {
+  &__property-list--big &__property {
     padding: 0 27px;
+    min-width: max-content;
     text-transform: none;
   }
 
@@ -28,7 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 11px;
+    margin: 5px 11px 5px 0;
     font-weight: bold;
     font-size: 16px;
     line-height: 130%;

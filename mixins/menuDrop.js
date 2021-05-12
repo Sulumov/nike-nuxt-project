@@ -10,7 +10,9 @@ export default {
         menuList[index].dropped = false
       } else {
         for (const idx in menuList) {
-          menuList[idx].dropped = false
+          if (!menuList[idx].showAll) {
+            menuList[idx].dropped = false
+          }
         }
         menuList[index].dropped = true
       }

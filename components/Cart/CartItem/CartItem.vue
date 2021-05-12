@@ -1,8 +1,8 @@
 <template>
   <div class="cart-item">
-    <div class="cart-item__img">
+    <nuxt-link :to="'/product/' + slug" class="cart-item__img">
       <img :src="image" :alt="title" />
-    </div>
+    </nuxt-link>
     <div class="cart-item__description">
       <div class="cart-item__top-section">
         <a
@@ -10,7 +10,9 @@
           class="cart-item__remove"
           @click.prevent="removeFromCart(index)"
         />
-        <div class="cart-item__title">{{ title }} {{ id }}</div>
+        <nuxt-link :to="'/product/' + slug" class="cart-item__title">
+          {{ title }} {{ id }}
+        </nuxt-link>
         <div class="cart-item__size">{{ size }}</div>
       </div>
       <div class="cart-item__bottom-section">
@@ -50,6 +52,7 @@ export default {
     },
     discount: {
       type: Number,
+      default: 0,
     },
     price: {
       type: Number,
@@ -57,6 +60,7 @@ export default {
     },
     oldPrice: {
       type: Number,
+      default: 0,
     },
     size: {
       type: String,
@@ -72,6 +76,10 @@ export default {
     },
     index: {
       type: Number,
+      required: true,
+    },
+    slug: {
+      type: String,
       required: true,
     },
   },

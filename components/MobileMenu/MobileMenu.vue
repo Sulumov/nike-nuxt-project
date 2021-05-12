@@ -28,16 +28,6 @@ import menuDrop from '@/mixins/menuDrop'
 export default {
   name: 'MobileMenu',
   mixins: [menuDrop],
-  computed: {
-    ...mapState({
-      mobileMenuVisibleStatus: (state) => state.mobileMenuVisibleStatus,
-    }),
-  },
-  methods: {
-    ...mapActions({
-      toggleMobileMenu: 'toggleMobileMenu',
-    }),
-  },
   data: () => ({
     menuList: [
       {
@@ -194,10 +184,51 @@ export default {
             title: 'Zoom',
             to: '/',
           },
+          {
+            title: 'Показать все',
+            showAll: true,
+            dropped: false,
+            children: [
+              {
+                title: 'Air Max 1',
+                to: '/',
+              },
+              {
+                title: 'Air Max 90',
+                to: '/',
+              },
+              {
+                title: 'Air Max 95',
+                to: '/',
+              },
+              {
+                title: 'Air Max 97',
+                to: '/',
+              },
+              {
+                title: 'Air Max 270',
+                to: '/',
+              },
+              {
+                title: 'Air Max 720',
+                to: '/',
+              },
+            ],
+          },
         ],
       },
     ],
   }),
+  computed: {
+    ...mapState({
+      mobileMenuVisibleStatus: (state) => state.mobileMenuVisibleStatus,
+    }),
+  },
+  methods: {
+    ...mapActions({
+      toggleMobileMenu: 'toggleMobileMenu',
+    }),
+  },
 }
 </script>
 
