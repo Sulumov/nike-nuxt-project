@@ -1,13 +1,16 @@
 const state = () => ({
   productList: [],
   currentProductId: '',
+  currentProductTitle: '',
   history: [],
 })
 
 const mutations = {
   SET_PRODUCTS_LIST: (state, payload) => (state.productList = payload),
-  SET_CURRENT_PRODUCT: (state, productId) =>
-    (state.currentProductId = productId),
+  SET_CURRENT_PRODUCT: (state, product) => {
+    state.currentProductId = product.id
+    state.currentProductTitle = product.title
+  },
   ADD_TO_ITEM_HISTORY: (state, product) => {
     const productIndex = state.history.findIndex(
       (item) => item.id === product.id

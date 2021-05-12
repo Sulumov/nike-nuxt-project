@@ -5,7 +5,7 @@ ENV NODE_ENV dependencies
 WORKDIR ${APP_ROOT}
 ADD . ${APP_ROOT}
 
-RUN npm install
-RUN npm run build
+RUN yarn
+RUN yarn build
 
-CMD ["npm", "run", "start"]
+CMD yarn run dev -p $PORT

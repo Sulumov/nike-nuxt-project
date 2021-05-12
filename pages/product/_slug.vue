@@ -76,7 +76,7 @@ export default {
   scrollToTop: true,
   fetch() {
     this.product = this.getProductBySlug(this.$route.params.slug)
-    this.setCurrentProductId(this.product.id)
+    this.setCurrentProduct({ id: this.product.id, title: this.product.name })
   },
   data: () => ({
     product: {},
@@ -117,7 +117,7 @@ export default {
       addToHistory: 'products/addToHistory',
     }),
     ...mapMutations({
-      setCurrentProductId: 'products/SET_CURRENT_PRODUCT',
+      setCurrentProduct: 'products/SET_CURRENT_PRODUCT',
       addToHistory: 'products/ADD_TO_ITEM_HISTORY',
       setHistoryPreset: 'products/SET_HISTORY_PRESET',
     }),

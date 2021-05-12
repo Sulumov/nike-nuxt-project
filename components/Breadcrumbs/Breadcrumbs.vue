@@ -1,18 +1,17 @@
 <template>
   <nav class="breadcrumbs">
     <nuxt-link to="/"> Главная </nuxt-link>
-    <span>{{ currentPageTitle }}</span>
+    <span>{{ title }}</span>
   </nav>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'Breadcrumbs',
-  computed: {
-    currentPageTitle() {
-      return document.title
-    },
-  },
+  computed: mapState({
+    title: (state) => state.products.currentProductTitle,
+  }),
 }
 </script>
 
