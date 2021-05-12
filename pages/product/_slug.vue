@@ -84,6 +84,16 @@ export default {
     selectedSize: {},
     selectedColor: {},
   }),
+  computed: {
+    ...mapGetters({
+      getProductBySlug: 'products/getProductBySlug',
+    }),
+    parseCompoundToString() {
+      return Object.keys(this.product).length !== 0
+        ? this.product.compound.join(', ')
+        : null
+    },
+  },
   mounted() {
     const historyFromLocalStorage = JSON.parse(localStorage.getItem('history'))
     if (historyFromLocalStorage && Array.isArray(historyFromLocalStorage)) {
@@ -99,16 +109,6 @@ export default {
       slug: this.product.slug,
     })
   },
-  computed: {
-    ...mapGetters({
-      getProductBySlug: 'products/getProductBySlug',
-    }),
-    parseCompoundToString() {
-      return Object.keys(this.product).length !== 0
-        ? this.product.compound.join(', ')
-        : null
-    },
-  },
   methods: {
     selectHandler(data, prop) {
       this.$data[prop] = data
@@ -122,6 +122,7 @@ export default {
       setHistoryPreset: 'products/SET_HISTORY_PRESET',
     }),
   },
+
   head() {
     return {
       title: this.product.name,
