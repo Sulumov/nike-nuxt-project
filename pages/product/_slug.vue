@@ -70,8 +70,10 @@
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
+
 export default {
   name: 'Slug',
+  scrollToTop: true,
   fetch() {
     this.product = this.getProductBySlug(this.$route.params.slug)
     this.setCurrentProductId(this.product.id)
@@ -146,6 +148,7 @@ export default {
   @media (max-width: 680px) {
     padding-top: 0;
   }
+
   &__back {
     left: 40px;
     width: 28px;
@@ -162,6 +165,7 @@ export default {
       display: none;
     }
   }
+
   &__details {
     display: flex;
     @media (max-width: 1280px) {

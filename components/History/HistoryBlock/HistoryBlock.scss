@@ -3,7 +3,12 @@
     font-weight: bold;
     font-size: 24px;
     line-height: 120%;
+
+    @media (max-width: 500px) {
+      font-size: 20px;
+    }
   }
+
 
   &__list {
     padding-top: 40px;
