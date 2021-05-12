@@ -1,0 +1,26 @@
+.history {
+  &__title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 120%;
+  }
+
+  &__list {
+    padding-top: 40px;
+    position: relative;
+  }
+
+  .VueCarousel-navigation {
+    position: absolute;
+    top: -68px;
+    right: 0;
+  }
+
+  .VueCarousel-navigation-button.VueCarousel-navigation-prev {
+    position: static;
+  }
+
+  .VueCarousel-navigation-button.VueCarousel-navigation-next {
+    position: static;
+  }
+}

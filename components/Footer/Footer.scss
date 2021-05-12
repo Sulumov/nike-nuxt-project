@@ -1,9 +1,15 @@
 .footer {
   background: #F4F4F4;
   padding-bottom: 81px;
+  margin-top: 96px;
+
+  @media (max-width: 1024px) {
+    margin-top: 83px;
+  }
 
   @media (max-width: 768px) {
     padding-bottom: 55px;
+    margin-top: 103px;
   }
 
   &__menu-columns {

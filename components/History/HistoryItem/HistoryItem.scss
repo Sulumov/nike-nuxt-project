@@ -1,0 +1,47 @@
+.history-item {
+  display: flex;
+  width: 250px;
+  margin-right: 50px;
+
+  &__image {
+    width: 70px;
+    min-width: 70px;
+    height: 100px;
+    object-fit: cover;
+  }
+
+  &__description {
+    padding-left: 10px;
+  }
+
+  &__discount {
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 130%;
+    color: #fff;
+    background: #FE030A;
+    border-radius: 24px;
+    padding: 4px 8px;
+  }
+
+  &__title {
+    font-size: 16px;
+    line-height: 130%;
+    display: block;
+  }
+
+  &__old-price, &__price {
+    font-size: 16px;
+    line-height: 130%;
+
+    &:after {
+      content: "₽";
+    }
+  }
+
+  &__old-price {
+    text-decoration-line: line-through;
+    color: #999999;
+    margin-right: 11px;
+  }
+}

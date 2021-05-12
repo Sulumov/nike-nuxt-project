@@ -63,13 +63,13 @@
         </div>
       </div>
       <relevant-items-block />
-      <history />
+      <history-block />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   name: 'Slug',
   fetch() {
@@ -82,6 +82,21 @@ export default {
     selectedSize: {},
     selectedColor: {},
   }),
+  mounted() {
+    const historyFromLocalStorage = JSON.parse(localStorage.getItem('history'))
+    if (historyFromLocalStorage && Array.isArray(historyFromLocalStorage)) {
+      this.setHistoryPreset(historyFromLocalStorage)
+    }
+    this.addToHistory({
+      id: this.product.id,
+      name: this.product.name,
+      price: this.product.current_price,
+      discount: this.product.discount,
+      oldPrice: this.product.old_price,
+      image: this.product.images[0],
+      slug: this.product.slug,
+    })
+  },
   computed: {
     ...mapGetters({
       getProductBySlug: 'products/getProductBySlug',
@@ -96,8 +111,13 @@ export default {
     selectHandler(data, prop) {
       this.$data[prop] = data
     },
+    ...mapActions({
+      addToHistory: 'products/addToHistory',
+    }),
     ...mapMutations({
       setCurrentProductId: 'products/SET_CURRENT_PRODUCT',
+      addToHistory: 'products/ADD_TO_ITEM_HISTORY',
+      setHistoryPreset: 'products/SET_HISTORY_PRESET',
     }),
   },
   head() {
@@ -187,7 +207,6 @@ export default {
   &__options {
     margin-top: 48px;
     padding-top: 48px;
-
     border-top: 1px solid #eaeaea;
     border-bottom: 1px solid #eaeaea;
     padding-bottom: 53px;
