@@ -24,7 +24,7 @@
             :discount="item.discount"
             :price="item.price"
             :old-price="item.oldPrice"
-            :title="item.name"
+            :name="item.name"
             :image="item.image"
             :number="item.number"
             :index="index"

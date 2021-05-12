@@ -11,7 +11,7 @@
           @click.prevent="removeFromCart(index)"
         />
         <nuxt-link :to="'/product/' + slug" class="cart-item__title">
-          {{ title }} {{ id }}
+          {{ name }}
         </nuxt-link>
         <div class="cart-item__size">{{ size }}</div>
       </div>
@@ -46,7 +46,7 @@ export default {
       type: String,
       required: true,
     },
-    title: {
+    name: {
       type: String,
       required: true,
     },

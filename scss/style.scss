@@ -35,3 +35,13 @@ body {
     padding: 0 20px;
   }
 }
+
+.page-enter-active,
+.page-leave-active {
+  transition: .1s ease-out;
+}
+.page-enter,
+.page-leave-to {
+  transform: translateY(100px);
+  opacity: 0;
+}
