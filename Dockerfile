@@ -8,4 +8,4 @@ ADD . ${APP_ROOT}
 RUN yarn
 RUN yarn build
 
-CMD yarn run dev -p $PORT
+CMD yarn start -p $PORT

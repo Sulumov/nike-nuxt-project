@@ -1,5 +1,7 @@
 services:
  nuxt:
     build: .
+    environment:
+        - PORT=8000
     ports:
-        - "8000:8000"
+        - "80:8000"
